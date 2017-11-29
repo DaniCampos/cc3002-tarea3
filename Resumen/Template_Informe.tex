@@ -1,0 +1,163 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.8cm,left=2.8cm,paper=letterpaper]{geometry}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bigstrut}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{sectsty}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage[bookmarks = true, colorlinks=true, linkcolor = black, citecolor = black, menucolor = black, urlcolor = black]{hyperref} 
+\usepackage[none]{hyphenat}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage[font={small}]{caption}
+\usepackage{blindtext}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\contentsname}
+{Índice}
+
+
+
+\sectionfont{\centering}
+
+\fancyhf{}
+\fancyhead[R]{\textit{ \nouppercase{\rightmark}} }
+\fancyfoot[L]{Escuela de Ingeniería y Ciencias}
+\fancyfoot[R]{Universidad de Chile}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand*{\sectionmark}[1]{\markboth{\MakeUppercase{#1}}{}}
+
+\begin{document}
+\lstset{language=Java} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%Inclusión portada%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\oddsidemargin 0cm \topmargin -2cm \textheight 21cm \textwidth
+	16.5cm \headheight 1cm \linespread {1.0} \headsep 1cm \parindent 0mm
+
+	\input{Portada}
+
+	%\topmargin 0cm
+	%\pagestyle{empty}
+	%\pagestyle{fancy}
+	%\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%Comienzo informe%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\newpage
+
+%\begin{center}
+%\tableofcontents
+%5\end{center}
+
+%\setlength{\parskip}{3mm}
+
+
+
+%\section{Diagrama UML}
+
+\center
+\section{Diagramas UML}
+
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.5]{controller.png}
+\caption{UML controller.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.5]{view.png}
+\caption{UML view.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.5]{logic.png}
+\caption{UML model.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.17]{modelCard.png}
+\caption{UML modelCard.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.17]{modelcarddeck.png}
+\caption{UML modelcarddeck.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.17]{modelcardtype.png}
+\caption{UML modelcardtype.package}
+\end{figure}
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.3]{modelPlayer.png}
+\caption{UML modelPlayer.package}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.3]{modelPlayertype.png}
+\caption{UML modelPlayertype.package}
+\end{figure}
+%\begin{figure}
+%\centerings
+%\includegraphics[scale=0.43]{HeartStone.png}
+%\end{figure}
+
+\newpage
+
+\section{Patrones de Diseño}
+
+Los patrones de diseño utilizados en la Tarea 2 fueron:
+
+\begin{enumerate}
+\item Adapter: Se adaptó la clase Stack de Java, utlizando la clase ICardPile.
+
+\item Template: Se implementó la clase DeckStrategy, la cual podría ser utilizada para crear un mazo para cualquier juego de cartas, debido a que dentro de esta se implemetaron los métodos createColorDeck y numericDeck, los cuales permiten crear un mazo de cartas de un color y uno con todas las cartas numéricas respectivamente. 
+
+\item NullObject: Se implementó la clase NullCard, con el objetivo de utilizarlo cuando fuera necesario sacar una carta, para así no tener que verificar que el arreglo que contuviera las cartas apropiadas para ser jugadas fuera nulo o estuviera vacío. También se implementó la clase NullController para testear el juego con un Human Player.
+
+\item Factory: Se utilizó este patrón a la hora de crear la lista de jugadores y el mazo. Para el caso del mazo, se utilizó la interfaz IDeckStrategy para crear un mazo(Product) utilizando DeckStrategy(Factory), el cliente correspondía a CardPilesManager.  Para crear la lista de jugadores(Producto), se utilizó la interfaz PlayerListBuilder(Factory) utilizando PlayerListBuilder, la cual era instanciada por PlayerManager(Cliente).
+
+\item Observer: Se trató de implementar un Observer Pattern a la hora de crear la GUI, con el objetivo de que esta fuera interactiva y que el juego notificara automáticamente a la GUI de lo que estaba pasando, de tal manera de que esta se actualizara cuando fuera necesario.
+
+\item Composite: Se implementó la clase CompositeCardPile para la implementación de la pila de cartas.
+
+
+\end{enumerate}
+
+\section{Cartas Extra}
+
+No se implementaron Cartas Extras.
+
+\section{Otros}
+
+Se utilizó un HashMap para albergar las imágenes de las cartas, debido a que de esta manera se podía aprovechar el método toString de las cartas para poder acceder a su imágen.
+
+Se decidió hacer funciones del estilo makePopUp o MakeButton debido a que para muchos botones se repetía la funcionalidad que estos debían tener, por lo que era mejor crear métodos que hicieran esto, evitando así repetición de código.
+
+\end{document}
